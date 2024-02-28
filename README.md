@@ -141,10 +141,13 @@ qmi_data_t data;
 
 void loop() {
   qmi8658c.read(&data);
+  Serial.print("x: ");
   Serial.print(data.acc_xyz.x);
   Serial.print(" | ");
+  Serial.print("y: ");
   Serial.print(data.acc_xyz.y);
   Serial.print(" | ");
+  Serial.print("z: ");
   Serial.print(data.acc_xyz.z);
   delay(100);
 }
