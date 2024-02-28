@@ -175,7 +175,7 @@ public:
     
 private:
     uint8_t deviceAdress;                                     // Device address of the Qmi8658c.
-    uint16_t deviceFrequency;                                            // Frequency of the Qmi8658c.
+    uint16_t deviceFrequency;                                 // Frequency of the Qmi8658c.
     
 public:
     Qmi8658c(uint8_t deviceAdress, uint32_t deviceFrequency); // Constructor for Qmi8658c class.

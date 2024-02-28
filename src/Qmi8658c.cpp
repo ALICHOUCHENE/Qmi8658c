@@ -56,7 +56,7 @@ uint16_t gyro_scale_sensitivity_table[8] = {
     GYRO_SCALE_SENSITIVITY_2048DPS    // Sensitivity for ±2048 degrees per second range.
 };
 
-/*################################# Functions for i2c communication #################################*/
+/*##################################### Functions for i2c communication #################################*/
 
 // Write a byte of data to a register in the QMI8658 device.
 
@@ -93,27 +93,27 @@ uint8_t Qmi8658c::qmi8658_read(uint8_t reg) {
          return;
     }
 
-  // Read data from the register
-  value = Wire.read();
-  Wire.endTransmission();
+    // Read data from the register
+    value = Wire.read();
+    Wire.endTransmission();
   
   return value;
 }
 
-/* ####################### comman function for accelerometer, gyroscope and magnetometer ####################### */
+/* ####################### comman function for accelerometer, gyroscope and magnetometer #################### */
 
 // Set the mode of operation for the QMI8658 device.
 
 void Qmi8658c::select_mode(qmi8658_mode_t qmi8658_mode ) {
   
-  uint8_t qmi8658_ctrl7_reg = this->qmi8658_read(QMI8658_CTRL7);
+    uint8_t qmi8658_ctrl7_reg = this->qmi8658_read(QMI8658_CTRL7);
     
-  qmi8658_ctrl7_reg = (0xFC & qmi8658_ctrl7_reg) | qmi8658_mode;
-  this->qmi8658_write(QMI8658_CTRL7,qmi8658_ctrl7_reg);   
+    qmi8658_ctrl7_reg = (0xFC & qmi8658_ctrl7_reg) | qmi8658_mode;
+    this->qmi8658_write(QMI8658_CTRL7,qmi8658_ctrl7_reg);   
 }
 
 
-/*################################# Functions for accelerometr #################################*/
+/*####################################### Functions for accelerometr #########################################*/
 
 // function to set output data rate of the accelerometer
 
@@ -137,7 +137,7 @@ void Qmi8658c::acc_set_scale(acc_scale_t acc_scale) {
     this->qmi8658_write(QMI8658_CTRL2,qmi8658_ctrl2_reg);
 }
 
-/*################################# Functions for gyroscope #################################*/
+/*######################################## Functions for gyroscope ##########################################*/
 
 // Set Gyroscope Output Data Rate (ODR)
 
@@ -162,7 +162,7 @@ void Qmi8658c::gyro_set_scale(gyro_scale_t gyro_scale) {
 }
 
 
-/*################################# General functions for qmi configuration #################################*/
+/*######################################### General functions for qmi configuration ##########################*/
 
 // Reset all regesters of the qmi8658 : 
 // To be done before starting interfacing with the sensor to make sure it's on a "konwn" state
@@ -172,7 +172,7 @@ void Qmi8658c:: qmi_reset(){
     this->qmi8658_write(QMI8658_RESET,0xB0);
 }
 
-/*################################# constructor function #################################*/
+/*######################################### constructor function ############################################*/
 
 //Initializes a new instance of the Qmi8658c class with the specified device address and frequency.
 
@@ -192,7 +192,7 @@ Qmi8658c::Qmi8658c(uint8_t deviceAdress, uint32_t deviceFrequency) {
     Wire.setClock(deviceFrequency);
 }
 
-/*##################################### class functions ############################*/
+/*######################################### class functions #################################################*/
 
 // Open communication with the QMI8658 sensor and initializes it with the provided configuration settings.
 // Return a status code indicating success or failure of the operation.
@@ -250,32 +250,32 @@ void Qmi8658c::read(qmi_data_t* data) {
 // Return a status code indicating success or failure of the operation.
 
 qmi8658_result_t Qmi8658c::close() {
-  uint8_t qmi8658_ctrl7_reg, qmi8658_ctrl1_reg;
-  qmi8658_result_t ret;
+    uint8_t qmi8658_ctrl7_reg, qmi8658_ctrl1_reg;
+    qmi8658_result_t ret;
   
-  qmi8658_ctrl7_reg = this->qmi8658_read(QMI8658_CTRL7);
+    qmi8658_ctrl7_reg = this->qmi8658_read(QMI8658_CTRL7);
   
-  // disable accelerometer, gyroscope, magnetometer and attitude engine
-   qmi8658_ctrl7_reg &= 0xF0; 
-  this->qmi8658_write(QMI8658_CTRL7,qmi8658_ctrl7_reg);
+    // disable accelerometer, gyroscope, magnetometer and attitude engine
+    qmi8658_ctrl7_reg &= 0xF0; 
+    this->qmi8658_write(QMI8658_CTRL7,qmi8658_ctrl7_reg);
   
-  // disable sensor by turning off the internal 2 MHz oscillator 
-   qmi8658_ctrl1_reg = this->qmi8658_read(QMI8658_CTRL1);
-   qmi8658_ctrl1_reg |= (1 << 0); 
-   this->qmi8658_write(QMI8658_CTRL1,qmi8658_ctrl1_reg);
+    // disable sensor by turning off the internal 2 MHz oscillator 
+    qmi8658_ctrl1_reg = this->qmi8658_read(QMI8658_CTRL1);
+    qmi8658_ctrl1_reg |= (1 << 0); 
+    this->qmi8658_write(QMI8658_CTRL1,qmi8658_ctrl1_reg);
 
-   // read these two registers
-   qmi8658_ctrl7_reg = this->qmi8658_read(QMI8658_CTRL7);
-   qmi8658_ctrl1_reg = this->qmi8658_read(QMI8658_CTRL1);
+    // read these two registers
+    qmi8658_ctrl7_reg = this->qmi8658_read(QMI8658_CTRL7);
+    qmi8658_ctrl1_reg = this->qmi8658_read(QMI8658_CTRL1);
 
-   ret = (!(qmi8658_ctrl7_reg & 0x0F) && (qmi8658_ctrl1_reg & 0x01)) ? qmi8658_result_close_success : qmi8658_result_close_error;
+    ret = (!(qmi8658_ctrl7_reg & 0x0F) && (qmi8658_ctrl1_reg & 0x01)) ? qmi8658_result_close_success : qmi8658_result_close_error;
 
    return ret;
 }
 
-// Converts a qmi8658_result_t enum value into a corresponding string.
+// Convert a qmi8658_result_t enum value into a corresponding string.
 char* Qmi8658c::resultToString(qmi8658_result_t result) {
-  switch(result){
+   switch(result){
     case qmi8658_result_open_success :
       return "open-success";
     case qmi8658_result_open_error :
