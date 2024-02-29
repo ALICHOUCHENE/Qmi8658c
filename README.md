@@ -157,3 +157,4 @@ void loop() {
   qmi8658_result = qmi8658c.close();
   Serial.print("close result : ");
   Serial.println(qmi8658c.resultToString(qmi8658_result));
+
