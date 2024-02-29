@@ -69,6 +69,9 @@
 #define GYRO_SCALE_SENSITIVITY_1024DPS  (1 << 5 )  // Sensitivity for ±1024 degrees per second range.
 #define GYRO_SCALE_SENSITIVITY_2048DPS  (1 << 4 )  // Sensitivity for ±2048 degrees per second range.
 
+/* Temperature sensor resolution */
+#define TEMPERATURE_SENSOR_RESOLUTION   (1 << 8 )  // Telperature sensor resolution (ADC)
+
 /* Enum representing the output data rate (ODR) settings for the accelerometer */
 typedef enum {
     acc_odr_8000,      // Accelerometer ODR set to 8000 Hz.

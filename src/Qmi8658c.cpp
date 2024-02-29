@@ -243,7 +243,7 @@ void Qmi8658c::read(qmi_data_t* data) {
 
     // read temperature data
     int16_t temp = (((int16_t)this->qmi8658_read(QMI8658_TEMP_H) << 8) | this->qmi8658_read(QMI8658_TEMP_L));
-    data->temperature = (float)temp/256;
+    data->temperature = (float)temp/TEMPERATURE_SENSOR_RESOLUTION;
 }
 
 // Close communication with the QMI8658 sensor.
