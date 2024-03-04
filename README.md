@@ -92,22 +92,22 @@ Certain public functions are provided by the QMI8658 IMU Library to manage the Q
 
 To use the QMI8658 IMU Library in your project, follow these steps:
 
-1. **Include Library**: Include the necessary header files in your project.
+1. **Include Library**: include the necessary header files in your project.
 
 ```c
 #include "Qmi8658c.h"
 
 ```
 
-2. **Instantiate Object**: Create an instance of the `Qmi8658c` class with the desired device address and communication frequency.
+2. **Instantiate Object**: create an instance of the `Qmi8658c` class with the desired device address and communication frequency.
 ```c
 #define QMI_ADRESS 0x6b
-#define QMI8658C_IIC_FREQUENCY 80*1000 //60kHz
+#define QMI8658C_IIC_FREQUENCY 80*1000 //80kHz
 
 Qmi8658c qmi8658c(QMI_ADRESS, QMI8658C_IIC_FREQUENCY);
 ```
 
-3. **Open Communication**: Use the `open` function to establish communication with the QMI8658 device.
+3. **Open Communication**: use the `open` function to establish communication with the QMI8658 device.
 
 ```c
 /* QMI8658C configuration */
@@ -135,7 +135,7 @@ void setup() {
 
 ```
 
-4. **Read Data**: Use the `read` function to read data from the device. The data will be stored in a `qmi_data_t` structure containing accelerometer, gyroscope, and temperature measurments.
+4. **Read Data**: use the `read` function to read data from the device. The data will be stored in a `qmi_data_t` structure containing accelerometer, gyroscope, and temperature measurments.
 ```c
 qmi_data_t data;
 
@@ -152,7 +152,7 @@ void loop() {
   delay(100);
 }
 ```
-5. **Close Communication**: When done, use the `close` function to close communication with the QMI8658 device and put it into low power mode.
+5. **Close Communication**: when done, use the `close` function to close communication with the QMI8658 device and put it into low power mode.
 ```c
   qmi8658_result = qmi8658c.close();
   Serial.print("close result : ");
