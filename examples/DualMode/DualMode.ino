@@ -8,7 +8,7 @@ Qmi8658c qmi8658c(QMI_ADDRESS, QMI8658C_I2C_FREQUENCY);
 
 /* QMI8658C configuration */
 qmi8658_cfg_t qmi8658_cfg = {
-  .qmi8658_mode = qmi8658_mode_acc_only,  // Set the QMI8658C mode to accelerometer-only mode
+  .qmi8658_mode = qmi8658_mode_dual,      // Set the QMI8658C mode to dual mode
   .acc_scale = acc_scale_2g,              // Set the accelerometer scale to ±2g
   .acc_odr = acc_odr_8000,                // Set the accelerometer output data rate (ODR) to 8000Hz
   .gyro_scale = gyro_scale_16dps,         // Set the gyroscope scale to ±16 dps

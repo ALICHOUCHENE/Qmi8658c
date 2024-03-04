@@ -8,7 +8,7 @@ Qmi8658c qmi8658c(QMI_ADDRESS, QMI8658C_I2C_FREQUENCY);
 
 /* QMI8658C configuration */
 qmi8658_cfg_t qmi8658_cfg = {
-  .qmi8658_mode = qmi8658_mode_acc_only, // Set the QMI8658C mode to accelerometer-only mode
+  .qmi8658_mode = qmi8658_mode_gyro_only, // Set the QMI8658C mode to gyroscope-only mode
   .acc_scale = 0,                         // Not used
   .acc_odr = 0,                           // Not used
   .gyro_scale = gyro_scale_16dps,         // Set the gyroscope scale to ±16 dps
