@@ -24,7 +24,7 @@
 #include <stdlib.h>
 #include <Wire.h>
 #include <Arduino.h>
-#include "qmi8658c.h"
+#include "Qmi8658c.h"
 
 /* Structure for QMI context */
 typedef struct {
