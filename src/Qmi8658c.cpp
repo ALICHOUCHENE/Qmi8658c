@@ -90,7 +90,7 @@ uint8_t Qmi8658c::qmi8658_read(uint8_t reg) {
         // Wait
         // timout for breaking the loop
         if (millis() - startTime > 1000) 
-         return;
+         break;
     }
 
     // Read data from the register
