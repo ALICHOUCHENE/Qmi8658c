@@ -24,7 +24,7 @@
 #include <stdlib.h>
 #include <Wire.h>
 #include <Arduino.h>
-#include "qmi8658c.h"
+#include "Qmi8658c.h"
 
 /* Structure for QMI context */
 typedef struct {
@@ -90,7 +90,7 @@ uint8_t Qmi8658c::qmi8658_read(uint8_t reg) {
         // Wait
         // timout for breaking the loop
         if (millis() - startTime > 1000) 
-         return;
+         return 0;
     }
 
     // Read data from the register
